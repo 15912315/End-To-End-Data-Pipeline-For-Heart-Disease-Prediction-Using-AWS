@@ -1,123 +1,160 @@
-Heart Disease Prediction Using AWS - End-to-End Data Pipeline
-Project Architecture
+# 💓 Heart Disease Prediction Using AWS - End-to-End Data Pipeline
 
-📌 Project Overview
-This project implements a hybrid cloud-based machine learning pipeline for accurate heart disease prediction, combining AWS services (S3, Glue, EC2) with Google Cloud's Vertex AI. Our Random Forest model achieves 90.16% accuracy with strong clinical metrics (0.88 precision, 0.91 recall), validated through 5-fold cross-validation.
 
-🚀 Key Features
-Automated ETL Pipeline: AWS Glue processes raw clinical data with 60% faster preparation time
+## 📌 Project Overview
 
-Hybrid Cloud Architecture: Leverages AWS for data processing + Google Cloud for ML
+- **Objective**: To create an **automated, cloud-native ML pipeline** for early detection of heart disease.
+- **Cloud Integration**: AWS (S3, Glue, EC2) + GCP (Vertex AI).
+- **ML Model**: Random Forest classifier with 90.16% accuracy, 0.88 precision, and 0.91 recall.
+- **Interface**: Real-time dashboard using Streamlit on AWS EC2.
 
-Real-Time Predictions: Vertex AI endpoints deliver results in <400ms
+---
 
-Interactive Dashboard: Streamlit UI hosted on EC2 for clinical decision support
+## 🏗️ System Architecture
 
-Explainable AI: Feature importance analysis identifies critical risk factors
 
-📊 Performance Metrics
-Metric	Score
-Accuracy	90.16%
-Precision	0.88
-Recall	0.91
-F1-Score	0.89
-Cross-Val Accuracy	84.8%
-🛠️ Technical Stack
-AWS Services:
+         +-------------+          +-------------+         +-----------------+
+         |  AWS S3     |  ---->   |  AWS Glue   | ---->   | Google Vertex AI|
+         +-------------+          +-------------+         +-----------------+
+              |                         |                         |
+         Raw Clinical Data        ETL + Preprocessing        Model Training & Deployment
+              |                         |                         ↓
+              ↓                         ↓                   Vertex AI Endpoint
+         +---------------------------------------------------------------+
+         |         AWS EC2 + Streamlit Dashboard for Real-time Inference |
+         +---------------------------------------------------------------+
 
-S3: Secure data storage
 
-Glue: Automated ETL pipelines
+## 🚀 Key Features
 
-EC2: Streamlit dashboard hosting
+- **Automated ETL Pipeline**: AWS Glue processes raw clinical data with 60% faster preparation time  
+- **Hybrid Cloud Architecture**: Leverages AWS for data processing + Google Cloud for ML  
+- **Real-Time Predictions**: Vertex AI endpoints deliver results in <400ms  
+- **Interactive Dashboard**: Streamlit UI hosted on EC2 for clinical decision support  
+- **Explainable AI**: Feature importance analysis identifies critical risk factors  
 
-Google Cloud:
+## 🧩 Stepwise Workflow
 
-Vertex AI: Model training & deployment
+A detailed breakdown of the hybrid cloud-based heart disease prediction pipeline:
 
-Machine Learning:
+---
 
-Random Forest (Best Performer)
+### 🔹 1. Data Ingestion
+- **Source**: Raw clinical datasets (demographics, vitals, diagnostic results)
+- **Storage**: Securely stored in **Amazon S3**
 
-Logistic Regression, SVM, Decision Trees
+---
 
-Scikit-learn, Pandas, NumPy
+### 🔹 2. ETL & Preprocessing
+- **Tool**: AWS Glue Studio (visual ETL)
+- **Processes**:
+  - Data Cleaning (missing values, outlier handling)
+  - Transformation (normalization, encoding)
+  - Feature Engineering for clinical relevance
 
-Visualization:
+---
 
-Streamlit, Matplotlib, Seaborn
+### 🔹 3. Model Training
+- **Platform**: Google Cloud Vertex AI
+- **Algorithms Tested**:
+  - Logistic Regression  
+  - Support Vector Machine (SVM)  
+  - Decision Tree  
+  - **Random Forest** (Best performer)
 
-📂 Repository Structure
-heart_prediction/
-├── data/                   # Sample datasets
-├── notebooks/              # Jupyter notebooks for EDA/modeling
-├── aws_glue_scripts/       # ETL job scripts
-├── streamlit_app/          # Dashboard source code
-├── models/                 # Trained model files
-└── docs/                   # Project documentation
-🏆 Comparative Algorithm Performance
-Algorithm	Accuracy
-Random Forest	90.16%
-Logistic Regression	85.25%
-Naive Bayes	85.25%
-SVM	81.97%
-Decision Tree	81.97%
-KNN	67.21%
-🖥️ How to Use the Prediction App
-Access the Streamlit dashboard on EC2
+---
 
-Input patient parameters:
+### 🔹 4. Deployment
+- **Model**: Random Forest Classifier
+- **Endpoint**: Deployed to **Vertex AI Endpoint**
+- **Purpose**: Real-time predictions via scalable API
 
-Demographic data (age, sex)
+---
 
-Clinical measurements (BP, cholesterol)
+### 🔹 5. Inference & UI
+- **Interface**: **Streamlit dashboard** hosted on **AWS EC2**
+- **Features**:
+  - User inputs patient data
+  - Immediate prediction (Low Risk / High Risk)
+  - Explainable results via feature importance
 
-Diagnostic test results (ECG, exercise tests)
-
-Get instant risk prediction with confidence score
-
-python
-# Sample prediction code
-input_data = [[57, 1, 2, 130, 236, 0, 1, 174, 0, 0.0, 1, 1, 2]]
-prediction = model.predict(input_data)  # 1 = High Risk, 0 = Low Risk
-🧠 Critical Risk Factors Identified
-Maximum heart rate (thalach)
-
-Chest pain type (cp)
-
-ST depression (oldpeak)
-
-Number of major vessels (ca)
-
-Thalassemia (thal)
-
-📈 Future Enhancements
-Quantum ML integration
-
-Multimodal data (ECG + EHR + imaging)
-
-Real-time wearable integration
-
-Explainable AI (SHAP/LIME)
-
-Federated learning for privacy
-
-📚 References
-IEEE Access Papers on Heart Disease Prediction
-
-Google Cloud Vertex AI Documentation
-
-AWS Glue Best Practices
-
-Scikit-learn Random Forest Implementation
+---
 
 
 
-👥 Contributors
-Akshay Kumar (RA2412033010021)
+## 📊 Performance Metrics
 
-Ritesh Kumar Verma (RA2412033010024)
+| Metric              | Score   |
+|---------------------|---------|
+| Accuracy            | 90.16%  |
+| Precision           | 0.88    |
+| Recall              | 0.91    |
+| F1-Score            | 0.89    |
+| Cross-Val Accuracy  | 84.8%   |
 
-Akshay Ladha (RA2412033010035)
+---
 
-Under guidance of Dr. S. Prabakeran, SRM Institute of Science and Technology
+## 🛠️ Technical Stack
+
+### AWS Services
+- **S3**: Secure data storage  
+- **Glue**: Automated ETL pipelines  
+- **EC2**: Streamlit dashboard hosting  
+
+### Google Cloud
+- **Vertex AI**: Model training & deployment  
+
+### Machine Learning
+- **Random Forest (Best Performer)**  
+- Logistic Regression, SVM, Decision Trees  
+- Scikit-learn, Pandas, NumPy  
+
+### Visualization
+- Streamlit  
+- Matplotlib  
+- Seaborn  
+
+---
+
+## 🧠 Critical Risk Factors Identified
+
+- **Maximum heart rate** (*thalach*)
+- **Chest pain type** (*cp*)
+- **ST depression** (*oldpeak*)
+- **Number of major vessels** (*ca*)
+- **Thalassemia** (*thal*)
+
+---
+
+## 📈 Future Enhancements
+
+- Quantum ML integration  
+- Multimodal data (**ECG + EHR + imaging**)  
+- Real-time wearable integration  
+- Explainable AI (**SHAP / LIME**)  
+- Federated learning for privacy  
+
+---
+
+## 📚 References
+
+- IEEE Access Papers on Heart Disease Prediction  
+- Google Cloud Vertex AI Documentation  
+- AWS Glue Best Practices  
+- Scikit-learn Random Forest Implementation  
+
+---
+
+## 👥 Contributors
+
+- **Akshay Kumar** *(RA2412033010021)*  
+- **Ritesh Kumar Verma** *(RA2412033010024)*  
+- **Akshay Ladha** *(RA2412033010035)*  
+
+> Under the guidance of **Dr. S. Prabakeran**,  
+> SRM Institute of Science and Technology
+
+---
+
+
+
