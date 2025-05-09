@@ -13,16 +13,8 @@
 ## 🏗️ System Architecture
 
 
-         +-------------+          +-------------+         +-----------------+
-         |  AWS S3     |  ---->   |  AWS Glue   | ---->   | Google Vertex AI|
-         +-------------+          +-------------+         +-----------------+
-              |                         |                         |
-         Raw Clinical Data        ETL + Preprocessing        Model Training & Deployment
-              |                         |                         ↓
-              ↓                         ↓                   Vertex AI Endpoint
-         +---------------------------------------------------------------+
-         |         AWS EC2 + Streamlit Dashboard for Real-time Inference |
-         +---------------------------------------------------------------+
+![System Architecture](https://github.com/15912315/End-To-End-Data-Pipeline-For-Heart-Disease-Prediction-Using-AWS/blob/3188d30d67d7ef761217fd244ca71a70d486c827/architecture_diagram.jpg)
+
 
 
 ## 🚀 Key Features
